@@ -4,9 +4,16 @@ export default {
   title: 'Project',
   fields: [
     {
-      title: 'Image',
-      description: 'Image of the project',
-      name: 'image',
+      title: 'Cover',
+      description: 'Cover image of the project',
+      name: 'cover',
+      type: 'image',
+      validation: (Rule) => Rule.required(),
+    },
+    {
+      title: 'Icon',
+      description: 'Icon image of the project',
+      name: 'icon',
       type: 'image',
       validation: (Rule) => Rule.required(),
     },

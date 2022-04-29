@@ -10,9 +10,17 @@ import {
   Heading,
   Text,
   Stack,
-  Button,
+  Icon,
+  Link,
   useColorModeValue as colorModeValue,
 } from '@chakra-ui/react';
+import {
+  FaDiscord,
+  FaCheck,
+  FaLink,
+  FaTwitter,
+  FaInstagram,
+} from 'react-icons/fa';
 
 const StyledPage = styled.div`
   .page {
@@ -46,77 +54,111 @@ export function Index() {
       </div>
       <div className="wrapper">
         <div className="container">
-          {projects?.map((project) => (
-            <Center key={project._id} py={6}>
-              <Box
-                maxW={'270px'}
-                w={'full'}
-                bg={colorModeValue('white', 'gray.800')}
-                boxShadow={'2xl'}
-                rounded={'md'}
-                overflow={'hidden'}
-              >
-                <Image
-                  alt="hello"
-                  h={'200px'}
-                  w={'full'}
-                  src={imageUrlBuilder.width(634).image(project.image).url()}
-                  objectFit={'cover'}
-                />
-                <Flex justify={'center'} mt={-12}>
-                  <Avatar
-                    size={'xl'}
-                    src={imageUrlBuilder.width(634).image(project.image).url()}
-                    css={{
-                      border: '2px solid white',
-                    }}
-                  />
-                </Flex>
-
-                <Box p={6}>
-                  <Stack spacing={0} align={'center'} mb={5}>
-                    <Heading
-                      fontSize={'2xl'}
-                      fontWeight={500}
-                      fontFamily={'body'}
-                    >
-                      {project.name}
-                    </Heading>
-                    <Text color={'gray.500'}>descrizione</Text>
-                  </Stack>
-
-                  <Stack direction={'row'} justify={'center'} spacing={6}>
-                    <Stack spacing={0} align={'center'}>
-                      <Text fontWeight={600}>23k</Text>
-                      <Text fontSize={'sm'} color={'gray.500'}>
-                        Followers
-                      </Text>
-                    </Stack>
-                    <Stack spacing={0} align={'center'}>
-                      <Text fontWeight={600}>23k</Text>
-                      <Text fontSize={'sm'} color={'gray.500'}>
-                        Followers
-                      </Text>
-                    </Stack>
-                  </Stack>
-
-                  <Button
+          <Flex gap={4} justifyContent="center" flexWrap="wrap">
+            {projects?.map((project) => (
+              <Center key={project._id} py={6}>
+                <Box
+                  w={'300px'}
+                  bg={colorModeValue('white', 'gray.800')}
+                  boxShadow={'2xl'}
+                  rounded={'md'}
+                  overflow={'hidden'}
+                >
+                  <Image
+                    alt="hello"
+                    h={'200px'}
                     w={'full'}
-                    mt={8}
-                    bg={colorModeValue('#151f21', 'gray.900')}
-                    color={'white'}
-                    rounded={'md'}
-                    _hover={{
-                      transform: 'translateY(-2px)',
-                      boxShadow: 'lg',
-                    }}
-                  >
-                    Follow
-                  </Button>
+                    src={imageUrlBuilder.width(634).image(project.cover).url()}
+                    objectFit={'cover'}
+                  />
+                  <Flex justify={'center'} mt={-12}>
+                    <Avatar
+                      size={'xl'}
+                      src={imageUrlBuilder.width(634).image(project.icon).url()}
+                      css={{
+                        border: '2px solid white',
+                      }}
+                    />
+                  </Flex>
+
+                  <Box p={6}>
+                    <Stack spacing={0} align={'center'} mb={5}>
+                      <Heading
+                        fontSize={'2xl'}
+                        fontWeight={500}
+                        fontFamily={'body'}
+                      >
+                        {project.name}
+                      </Heading>
+                    </Stack>
+                    <Stack spacing={0} align={'center'} mt={5}>
+                      <Text color={project.minted ? 'green.500' : 'red.500'}>
+                        Minted <Icon as={FaCheck} />
+                      </Text>
+                    </Stack>
+                    <Flex gap={4} mt={8} justifyContent="center">
+                      {project.links.website && (
+                        <Link href={project.links.website} isExternal>
+                          <Icon
+                            w={6}
+                            h={6}
+                            as={FaLink}
+                            transition="all 0.2s ease-in-out"
+                            _hover={{
+                              color: 'blue.500',
+                              transform: 'scale(1.1)',
+                            }}
+                          />
+                        </Link>
+                      )}
+                      {project.links.instagram && (
+                        <Link href={project.links.instagram} isExternal>
+                          <Icon
+                            w={6}
+                            h={6}
+                            as={FaInstagram}
+                            transition="all 0.2s"
+                            _hover={{
+                              color: 'blue.500',
+                              transform: 'scale(1.1)',
+                            }}
+                          />
+                        </Link>
+                      )}
+                      {project.links.discord && (
+                        <Link href={project.links.discord} isExternal>
+                          <Icon
+                            w={6}
+                            h={6}
+                            as={FaDiscord}
+                            transition="all 0.2s"
+                            _hover={{
+                              color: 'blue.500',
+                              transform: 'scale(1.1)',
+                            }}
+                          />
+                        </Link>
+                      )}
+                      {project.links.twitter && (
+                        <Link href={project.links.twitter} isExternal>
+                          <Icon
+                            w={6}
+                            h={6}
+                            as={FaTwitter}
+                            transition="all 0.2s"
+                            _hover={{
+                              color: 'blue.500',
+                              transform: 'scale(1.1)',
+                            }}
+                          />
+                        </Link>
+                      )}
+                    </Flex>
+                  </Box>
                 </Box>
-              </Box>
-            </Center>
-          ))}
+              </Center>
+            ))}
+          </Flex>
         </div>
       </div>
     </StyledPage>

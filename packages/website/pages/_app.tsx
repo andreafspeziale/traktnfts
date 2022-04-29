@@ -2,6 +2,7 @@ import { AppProps } from 'next/app';
 import Head from 'next/head';
 import './styles.css';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { ChakraProvider } from '@chakra-ui/react';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -14,12 +15,14 @@ const queryClient = new QueryClient({
 function CustomApp({ Component, pageProps }: AppProps) {
   return (
     <QueryClientProvider client={queryClient}>
-      <Head>
-        <title>Welcome to website!</title>
-      </Head>
-      <main className="app">
-        <Component {...pageProps} />
-      </main>
+      <ChakraProvider>
+        <Head>
+          <title>Welcome to website!</title>
+        </Head>
+        <main className="app">
+          <Component {...pageProps} />
+        </main>
+      </ChakraProvider>
     </QueryClientProvider>
   );
 }

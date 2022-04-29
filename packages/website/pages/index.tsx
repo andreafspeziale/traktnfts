@@ -21,6 +21,7 @@ import {
   FaTwitter,
   FaInstagram,
 } from 'react-icons/fa';
+import { GiWhaleTail } from 'react-icons/gi';
 
 const StyledPage = styled.div`
   .page {
@@ -111,20 +112,6 @@ export function Index() {
                           />
                         </Link>
                       )}
-                      {project.links.instagram && (
-                        <Link href={project.links.instagram} isExternal>
-                          <Icon
-                            w={6}
-                            h={6}
-                            as={FaInstagram}
-                            transition="all 0.2s"
-                            _hover={{
-                              color: 'blue.500',
-                              transform: 'scale(1.1)',
-                            }}
-                          />
-                        </Link>
-                      )}
                       {project.links.discord && (
                         <Link href={project.links.discord} isExternal>
                           <Icon
@@ -139,12 +126,40 @@ export function Index() {
                           />
                         </Link>
                       )}
+                      {project.links.instagram && (
+                        <Link href={project.links.instagram} isExternal>
+                          <Icon
+                            w={6}
+                            h={6}
+                            as={FaInstagram}
+                            transition="all 0.2s"
+                            _hover={{
+                              color: 'blue.500',
+                              transform: 'scale(1.1)',
+                            }}
+                          />
+                        </Link>
+                      )}
                       {project.links.twitter && (
                         <Link href={project.links.twitter} isExternal>
                           <Icon
                             w={6}
                             h={6}
                             as={FaTwitter}
+                            transition="all 0.2s"
+                            _hover={{
+                              color: 'blue.500',
+                              transform: 'scale(1.1)',
+                            }}
+                          />
+                        </Link>
+                      )}
+                      {project.links.opensea && (
+                        <Link href={project.links.opensea} isExternal>
+                          <Icon
+                            w={6}
+                            h={6}
+                            as={GiWhaleTail}
                             transition="all 0.2s"
                             _hover={{
                               color: 'blue.500',

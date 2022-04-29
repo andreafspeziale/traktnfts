@@ -40,15 +40,18 @@ export function Index() {
    */
 
   const { data: projects } = useQuery('getProjects', () => sanity.fetch(query));
-
   return (
     <StyledPage>
       <div className="wrapper">
         <div className="container">
           <div id="welcome">
             <h1>
-              <span> Hello there, </span>
-              Welcome website 👋
+              <span>Hello fren, </span>
+              <span className="claim">becoming a collector is not ez.</span>
+              <span>
+                You need to keep an eye on every project you like, organize and
+                find them quickly.
+              </span>
             </h1>
           </div>
         </div>

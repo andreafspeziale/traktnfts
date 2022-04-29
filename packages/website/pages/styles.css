@@ -91,6 +91,9 @@ pre {
   line-height: 2.25rem;
   margin-bottom: 0.5rem;
 }
+#welcome .claim {
+  font-size: 3.3rem;
+}
 #hero {
   align-items: center;
   background-color: hsla(214, 62%, 21%, 1);

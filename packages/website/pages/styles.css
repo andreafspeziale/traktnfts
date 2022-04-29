@@ -92,7 +92,8 @@ pre {
   margin-bottom: 0.5rem;
 }
 #welcome .claim {
-  font-size: 3.3rem;
+  font-size: 2.85rem;
+  line-height: 3.4rem;
 }
 #hero {
   align-items: center;

@@ -81,6 +81,13 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
+      title: 'Displayed',
+      description: 'Project is shown or not',
+      name: 'displayed',
+      type: 'boolean',
+      validation: (Rule) => Rule.required(),
+    },
+    {
       title: 'Mint',
       description: 'Mint details of the project',
       name: 'mint',
@@ -116,12 +123,6 @@ export default {
               title: 'Start',
               description: 'Public mint start date',
               name: 'start',
-              type: 'datetime',
-            },
-            {
-              title: 'End',
-              description: 'Public mint end date',
-              name: 'end',
               type: 'datetime',
             },
           ],

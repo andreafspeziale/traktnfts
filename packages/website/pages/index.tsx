@@ -39,7 +39,7 @@ export function Index() {
       </div>
       <div className="wrapper">
         <div className="container">
-          <Flex gap={4} justifyContent="center" flexWrap="wrap">
+          <Flex gap={6} justifyContent="center" flexWrap="wrap">
             {projects?.map((project) => (
               <Center key={project._id} py={6}>
                 <Card

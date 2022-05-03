@@ -47,9 +47,14 @@ export const Card: React.VFC<CardProps> = ({
     <Box
       w={'300px'}
       bg={colorModeValue('white', 'gray.800')}
-      boxShadow={'2xl'}
+      boxShadow={'xl'}
       rounded={'md'}
       overflow={'hidden'}
+      transition="all 0.2s ease-in-out"
+      _hover={{
+        boxShadow: '2xl',
+        transform: 'scale(1.04)',
+      }}
       {...props}
     >
       <Image

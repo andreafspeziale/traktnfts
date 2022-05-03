@@ -1,27 +1,8 @@
 import styled from '@emotion/styled';
 import { useQuery } from 'react-query';
 import { imageUrlBuilder, sanity } from '../utils/sanity';
-import {
-  Center,
-  Image,
-  Box,
-  Flex,
-  Avatar,
-  Heading,
-  Text,
-  Stack,
-  Icon,
-  Link,
-  useColorModeValue as colorModeValue,
-} from '@chakra-ui/react';
-import {
-  FaDiscord,
-  FaCheck,
-  FaLink,
-  FaTwitter,
-  FaInstagram,
-} from 'react-icons/fa';
-import { GiWhaleTail } from 'react-icons/gi';
+import { Center, Flex } from '@chakra-ui/react';
+import { Card } from '@traktnfts/components';
 
 const StyledPage = styled.div`
   .page {
@@ -61,119 +42,17 @@ export function Index() {
           <Flex gap={4} justifyContent="center" flexWrap="wrap">
             {projects?.map((project) => (
               <Center key={project._id} py={6}>
-                <Box
-                  w={'300px'}
-                  bg={colorModeValue('white', 'gray.800')}
-                  boxShadow={'2xl'}
-                  rounded={'md'}
-                  overflow={'hidden'}
-                >
-                  <Image
-                    alt="hello"
-                    h={'200px'}
-                    w={'full'}
-                    src={imageUrlBuilder.width(634).image(project.cover).url()}
-                    objectFit={'cover'}
-                  />
-                  <Flex justify={'center'} mt={-12}>
-                    <Avatar
-                      size={'xl'}
-                      src={imageUrlBuilder.width(634).image(project.icon).url()}
-                      css={{
-                        border: '2px solid white',
-                      }}
-                    />
-                  </Flex>
-
-                  <Box p={6}>
-                    <Stack spacing={0} align={'center'} mb={5}>
-                      <Heading
-                        fontSize={'2xl'}
-                        fontWeight={500}
-                        fontFamily={'body'}
-                      >
-                        {project.name}
-                      </Heading>
-                    </Stack>
-                    <Stack spacing={0} align={'center'} mt={5}>
-                      <Text color={project.minted ? 'green.500' : 'red.500'}>
-                        Minted <Icon as={FaCheck} />
-                      </Text>
-                    </Stack>
-                    <Flex gap={4} mt={8} justifyContent="center">
-                      {project.links.website && (
-                        <Link href={project.links.website} isExternal>
-                          <Icon
-                            w={6}
-                            h={6}
-                            as={FaLink}
-                            transition="all 0.2s ease-in-out"
-                            _hover={{
-                              color: 'blue.500',
-                              transform: 'scale(1.1)',
-                            }}
-                          />
-                        </Link>
-                      )}
-                      {project.links.discord && (
-                        <Link href={project.links.discord} isExternal>
-                          <Icon
-                            w={6}
-                            h={6}
-                            as={FaDiscord}
-                            transition="all 0.2s"
-                            _hover={{
-                              color: 'blue.500',
-                              transform: 'scale(1.1)',
-                            }}
-                          />
-                        </Link>
-                      )}
-                      {project.links.instagram && (
-                        <Link href={project.links.instagram} isExternal>
-                          <Icon
-                            w={6}
-                            h={6}
-                            as={FaInstagram}
-                            transition="all 0.2s"
-                            _hover={{
-                              color: 'blue.500',
-                              transform: 'scale(1.1)',
-                            }}
-                          />
-                        </Link>
-                      )}
-                      {project.links.twitter && (
-                        <Link href={project.links.twitter} isExternal>
-                          <Icon
-                            w={6}
-                            h={6}
-                            as={FaTwitter}
-                            transition="all 0.2s"
-                            _hover={{
-                              color: 'blue.500',
-                              transform: 'scale(1.1)',
-                            }}
-                          />
-                        </Link>
-                      )}
-                      {project.links.opensea && (
-                        <Link href={project.links.opensea} isExternal>
-                          <Icon
-                            w={6}
-                            h={6}
-                            as={GiWhaleTail}
-                            transition="all 0.2s"
-                            _hover={{
-                              color: 'blue.500',
-                              transform: 'scale(1.1)',
-                            }}
-                          />
-                        </Link>
-                      )}
-                    </Flex>
-                  </Box>
-                </Box>
+                <Card
+                  name={project.name}
+                  minted={project.minted}
+                  website={project.links.website}
+                  discord={project.links.discord}
+                  twitter={project.links.twitter}
+                  opensea={project.links.opensea}
+                  instagram={project.links.instagram}
+                  cover={imageUrlBuilder.width(634).image(project.cover).url()}
+                  icon={imageUrlBuilder.width(150).image(project.icon).url()}
+                />
               </Center>
             ))}
           </Flex>

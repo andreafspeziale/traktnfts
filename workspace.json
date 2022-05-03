@@ -1,6 +1,7 @@
 {
   "version": 2,
   "projects": {
+    "components": "packages/components",
     "sanity": "packages/sanity",
     "website": "packages/website",
     "website-e2e": "packages/website-e2e"

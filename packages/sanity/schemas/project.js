@@ -54,21 +54,9 @@ export default {
           type: 'url',
         },
         {
-          title: 'Instagram',
-          description: 'Instagram profile of the project',
-          name: 'instagram',
-          type: 'url',
-        },
-        {
           title: 'OpenSea',
           description: 'OpenSea profile of the project',
           name: 'opensea',
-          type: 'url',
-        },
-        {
-          title: 'Etherscan',
-          description: 'Smart contract of the project',
-          name: 'etherscan',
           type: 'url',
         },
       ],

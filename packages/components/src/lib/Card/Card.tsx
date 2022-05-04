@@ -10,13 +10,7 @@ import {
   Link,
   useColorModeValue as colorModeValue,
 } from '@chakra-ui/react';
-import {
-  FaDiscord,
-  FaCheck,
-  FaLink,
-  FaTwitter,
-  FaInstagram,
-} from 'react-icons/fa';
+import { FaDiscord, FaCheck, FaLink, FaTwitter } from 'react-icons/fa';
 import { GiWhaleTail } from 'react-icons/gi';
 
 export interface CardProps {
@@ -25,7 +19,6 @@ export interface CardProps {
   cover: string;
   icon: string;
   website: string;
-  instagram: string;
   discord: string;
   twitter: string;
   opensea: string;
@@ -40,7 +33,6 @@ export const Card: React.VFC<CardProps> = ({
   discord,
   twitter,
   opensea,
-  instagram,
   ...props
 }) => {
   return (
@@ -106,20 +98,6 @@ export const Card: React.VFC<CardProps> = ({
                 w={6}
                 h={6}
                 as={FaDiscord}
-                transition="all 0.2s"
-                _hover={{
-                  color: 'blue.500',
-                  transform: 'scale(1.1)',
-                }}
-              />
-            </Link>
-          )}
-          {instagram && (
-            <Link href={instagram} isExternal>
-              <Icon
-                w={6}
-                h={6}
-                as={FaInstagram}
                 transition="all 0.2s"
                 _hover={{
                   color: 'blue.500',

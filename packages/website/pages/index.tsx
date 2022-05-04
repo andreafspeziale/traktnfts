@@ -49,7 +49,6 @@ export function Index() {
                   discord={project.links.discord}
                   twitter={project.links.twitter}
                   opensea={project.links.opensea}
-                  instagram={project.links.instagram}
                   cover={imageUrlBuilder.width(634).image(project.cover).url()}
                   icon={imageUrlBuilder.width(150).image(project.icon).url()}
                 />

@@ -10,7 +10,13 @@ import {
   Link,
   useColorModeValue as colorModeValue,
 } from '@chakra-ui/react';
-import { FaDiscord, FaCheck, FaLink, FaTwitter } from 'react-icons/fa';
+import {
+  FaDiscord,
+  FaRegCheckCircle,
+  FaLink,
+  FaTwitter,
+  FaRegTimesCircle,
+} from 'react-icons/fa';
 import { GiWhaleTail } from 'react-icons/gi';
 
 export interface CardProps {
@@ -74,7 +80,7 @@ export const Card: React.VFC<CardProps> = ({
         </Stack>
         <Stack spacing={0} align={'center'} mt={5}>
           <Text color={minted ? 'green.500' : 'red.500'}>
-            Minted <Icon as={FaCheck} />
+            Minted <Icon as={minted ? FaRegCheckCircle : FaRegTimesCircle} />
           </Text>
         </Stack>
         <Flex gap={4} mt={8} justifyContent="center">

@@ -51,6 +51,7 @@ export function Index() {
                   opensea={project.links.opensea}
                   cover={imageUrlBuilder.width(634).image(project.cover).url()}
                   icon={imageUrlBuilder.width(150).image(project.icon).url()}
+                  mint={project.mint}
                 />
               </Center>
             ))}

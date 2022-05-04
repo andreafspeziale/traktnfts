@@ -28,6 +28,16 @@ export interface CardProps {
   discord: string;
   twitter: string;
   opensea: string;
+  mint?: {
+    private?: {
+      start: string;
+      end: string;
+    };
+    public?: {
+      start: string;
+      end: string;
+    };
+  };
 }
 
 export const Card: React.VFC<CardProps> = ({
@@ -39,6 +49,7 @@ export const Card: React.VFC<CardProps> = ({
   discord,
   twitter,
   opensea,
+  mint,
   ...props
 }) => {
   return (
@@ -75,14 +86,28 @@ export const Card: React.VFC<CardProps> = ({
       <Box p={6}>
         <Stack spacing={0} align={'center'} mb={5}>
           <Heading fontSize={'2xl'} fontWeight={500} fontFamily={'body'}>
-            {name}
+            {name}{' '}
+            <Icon
+              h={4}
+              color={minted ? 'green.500' : 'red.500'}
+              as={minted ? FaRegCheckCircle : FaRegTimesCircle}
+            />
           </Heading>
         </Stack>
-        <Stack spacing={0} align={'center'} mt={5}>
-          <Text color={minted ? 'green.500' : 'red.500'}>
-            Minted <Icon as={minted ? FaRegCheckCircle : FaRegTimesCircle} />
-          </Text>
-        </Stack>
+        {!minted && mint && mint.private && (
+          <Stack spacing={0}>
+            <Text fontWeight={600}>Private</Text>
+            <Text fontSize="sm">start {mint.private?.start}</Text>
+            <Text fontSize="sm">end {mint.private?.end}</Text>
+          </Stack>
+        )}
+        {!minted && mint && mint.public && (
+          <Stack spacing={0}>
+            <Text fontWeight={600}>Public</Text>
+            <Text fontSize="sm">start {mint.public?.start}</Text>
+            <Text fontSize="sm">end {mint.public?.end}</Text>
+          </Stack>
+        )}
         <Flex gap={4} mt={8} justifyContent="center">
           {website && (
             <Link href={website} isExternal>

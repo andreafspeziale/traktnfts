@@ -42,17 +42,22 @@ export function Index() {
           <Flex gap={6} justifyContent="center" flexWrap="wrap">
             {projects?.map((project) => (
               <Center key={project._id} py={6}>
-                <Card
-                  name={project.name}
-                  minted={project.minted}
-                  website={project.links.website}
-                  discord={project.links.discord}
-                  twitter={project.links.twitter}
-                  opensea={project.links.opensea}
-                  cover={imageUrlBuilder.width(634).image(project.cover).url()}
-                  icon={imageUrlBuilder.width(150).image(project.icon).url()}
-                  mint={project.mint}
-                />
+                {project.displayed && (
+                  <Card
+                    name={project.name}
+                    minted={project.minted}
+                    website={project.links.website}
+                    discord={project.links.discord}
+                    twitter={project.links.twitter}
+                    opensea={project.links.opensea}
+                    cover={imageUrlBuilder
+                      .width(634)
+                      .image(project.cover)
+                      .url()}
+                    icon={imageUrlBuilder.width(150).image(project.icon).url()}
+                    mint={project.mint}
+                  />
+                )}
               </Center>
             ))}
           </Flex>

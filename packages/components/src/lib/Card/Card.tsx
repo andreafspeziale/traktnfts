@@ -20,6 +20,7 @@ import {
 } from 'react-icons/fa';
 import { GiWhaleTail } from 'react-icons/gi';
 import { BsFillCalendarPlusFill } from 'react-icons/bs';
+import moment from 'moment';
 
 export interface CardProps {
   name: string;
@@ -99,7 +100,14 @@ export const Card: React.VFC<CardProps> = ({
         {!minted && mint && mint.private && (
           <Stack spacing={0} direction="row">
             <Stack spacing={0} m="auto">
-              <Link href={website} isExternal>
+              <Link
+                href={`https://www.google.com/calendar/render?action=TEMPLATE&text=${name}+Private+Mint&dates=${moment(
+                  mint.private.start
+                ).format('YYYYMMDD[T]HH:mm')}/${moment(mint.private.end).format(
+                  'YYYYMMDD[T]HH:mm'
+                )}`}
+                isExternal
+              >
                 <Icon
                   w={5}
                   h={5}
@@ -114,8 +122,12 @@ export const Card: React.VFC<CardProps> = ({
             </Stack>
             <Stack spacing={0}>
               <Text fontWeight={600}>Private Mint </Text>
-              <Text fontSize="sm">Start: 2022-05-17 15:30 (CET)</Text>
-              <Text fontSize="sm">End: 2022-05-17 15:30 (CET)</Text>
+              <Text fontSize="sm">
+                {moment(mint.private.start).format('DD-MM-YYYY HH:mm')}
+              </Text>
+              <Text fontSize="sm">
+                {moment(mint.private.end).format('DD-MM-YYYY HH:mm')}
+              </Text>
             </Stack>
           </Stack>
         )}
@@ -125,7 +137,12 @@ export const Card: React.VFC<CardProps> = ({
         {!minted && mint && mint.public && (
           <Stack spacing={0} direction="row">
             <Stack spacing={0} m="auto">
-              <Link href={website} isExternal>
+              <Link
+                href={`https://www.google.com/calendar/render?action=TEMPLATE&text=${name}+Public+Mint&dates=${moment(
+                  mint.public.start
+                ).format()}`}
+                isExternal
+              >
                 <Icon
                   w={5}
                   h={5}
@@ -140,8 +157,9 @@ export const Card: React.VFC<CardProps> = ({
             </Stack>
             <Stack spacing={0}>
               <Text fontWeight={600}>Public Mint</Text>
-              <Text fontSize="sm">Start: 2022-05-17 15:30 (CET)</Text>
-              <Text fontSize="sm">End: 2022-05-17 15:30 (CET)</Text>
+              <Text fontSize="sm">
+                {moment(mint.public.start).format('YYYY-MM-DD HH:mm')}
+              </Text>
             </Stack>
           </Stack>
         )}

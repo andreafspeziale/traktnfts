@@ -41,7 +41,7 @@ export function Index() {
         <div className="container">
           <Flex gap={6} justifyContent="center" flexWrap="wrap">
             {projects?.map((project) => (
-              <Center key={project._id} py={6}>
+              <Center key={project._id} py={6} alignItems="stretch">
                 {project.displayed && (
                   <Card
                     name={project.name}

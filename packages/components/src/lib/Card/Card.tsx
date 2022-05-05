@@ -89,7 +89,7 @@ export const Card: React.VFC<CardProps> = ({
           <Heading fontSize={'2xl'} fontWeight={500} fontFamily={'body'}>
             {name}{' '}
             <Icon
-              h={4}
+              h={5}
               color={minted ? 'green.500' : 'red.500'}
               as={minted ? FaRegCheckCircle : FaRegTimesCircle}
             />
@@ -99,7 +99,18 @@ export const Card: React.VFC<CardProps> = ({
         {!minted && mint && mint.private && (
           <Stack spacing={0} direction="row">
             <Stack spacing={0} m="auto">
-              <Icon h={4} as={BsFillCalendarPlusFill} />
+              <Link href={website} isExternal>
+                <Icon
+                  w={5}
+                  h={5}
+                  as={BsFillCalendarPlusFill}
+                  transition="all 0.2s ease-in-out"
+                  _hover={{
+                    color: 'blue.500',
+                    transform: 'scale(1.1)',
+                  }}
+                />
+              </Link>
             </Stack>
             <Stack spacing={0}>
               <Text fontWeight={600}>Private Mint </Text>
@@ -114,7 +125,18 @@ export const Card: React.VFC<CardProps> = ({
         {!minted && mint && mint.public && (
           <Stack spacing={0} direction="row">
             <Stack spacing={0} m="auto">
-              <Icon h={4} as={BsFillCalendarPlusFill} />
+              <Link href={website} isExternal>
+                <Icon
+                  w={5}
+                  h={5}
+                  as={BsFillCalendarPlusFill}
+                  transition="all 0.2s ease-in-out"
+                  _hover={{
+                    color: 'blue.500',
+                    transform: 'scale(1.1)',
+                  }}
+                />
+              </Link>
             </Stack>
             <Stack spacing={0}>
               <Text fontWeight={600}>Public Mint</Text>
@@ -130,8 +152,8 @@ export const Card: React.VFC<CardProps> = ({
           {website && (
             <Link href={website} isExternal>
               <Icon
-                w={6}
-                h={6}
+                w={5}
+                h={5}
                 as={FaLink}
                 transition="all 0.2s ease-in-out"
                 _hover={{

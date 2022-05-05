@@ -9,6 +9,7 @@ import {
   Icon,
   Link,
   useColorModeValue as colorModeValue,
+  Divider,
 } from '@chakra-ui/react';
 import {
   FaDiscord,
@@ -18,6 +19,7 @@ import {
   FaRegTimesCircle,
 } from 'react-icons/fa';
 import { GiWhaleTail } from 'react-icons/gi';
+import { BsFillCalendarPlusFill } from 'react-icons/bs';
 
 export interface CardProps {
   name: string;
@@ -82,9 +84,8 @@ export const Card: React.VFC<CardProps> = ({
           }}
         />
       </Flex>
-
       <Box p={6}>
-        <Stack spacing={0} align={'center'} mb={5}>
+        <Stack spacing={0} align="center">
           <Heading fontSize={'2xl'} fontWeight={500} fontFamily={'body'}>
             {name}{' '}
             <Icon
@@ -94,21 +95,38 @@ export const Card: React.VFC<CardProps> = ({
             />
           </Heading>
         </Stack>
+        <Divider mt={4} mb={4} orientation="horizontal" />
         {!minted && mint && mint.private && (
-          <Stack spacing={0}>
-            <Text fontWeight={600}>Private</Text>
-            <Text fontSize="sm">start {mint.private?.start}</Text>
-            <Text fontSize="sm">end {mint.private?.end}</Text>
+          <Stack spacing={0} direction="row">
+            <Stack spacing={0} m="auto">
+              <Icon h={4} as={BsFillCalendarPlusFill} />
+            </Stack>
+            <Stack spacing={0}>
+              <Text fontWeight={600}>Private Mint </Text>
+              <Text fontSize="sm">Start: 2022-05-17 15:30 (CET)</Text>
+              <Text fontSize="sm">End: 2022-05-17 15:30 (CET)</Text>
+            </Stack>
+          </Stack>
+        )}
+        {!minted && mint && mint.private && (
+          <Divider mt={4} mb={4} orientation="horizontal" />
+        )}
+        {!minted && mint && mint.public && (
+          <Stack spacing={0} direction="row">
+            <Stack spacing={0} m="auto">
+              <Icon h={4} as={BsFillCalendarPlusFill} />
+            </Stack>
+            <Stack spacing={0}>
+              <Text fontWeight={600}>Public Mint</Text>
+              <Text fontSize="sm">Start: 2022-05-17 15:30 (CET)</Text>
+              <Text fontSize="sm">End: 2022-05-17 15:30 (CET)</Text>
+            </Stack>
           </Stack>
         )}
         {!minted && mint && mint.public && (
-          <Stack spacing={0}>
-            <Text fontWeight={600}>Public</Text>
-            <Text fontSize="sm">start {mint.public?.start}</Text>
-            <Text fontSize="sm">end {mint.public?.end}</Text>
-          </Stack>
+          <Divider mt={4} mb={4} orientation="horizontal" />
         )}
-        <Flex gap={4} mt={8} justifyContent="center">
+        <Flex gap={4} justifyContent="center">
           {website && (
             <Link href={website} isExternal>
               <Icon

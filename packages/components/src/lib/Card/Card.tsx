@@ -57,7 +57,7 @@ export const Card: React.VFC<CardProps> = ({
 }) => {
   return (
     <Box
-      w={'300px'}
+      w={'340px'}
       bg={colorModeValue('white', 'gray.800')}
       boxShadow={'xl'}
       rounded={'md'}
@@ -69,162 +69,236 @@ export const Card: React.VFC<CardProps> = ({
       }}
       {...props}
     >
-      <Image
-        alt="hello"
-        h={'200px'}
-        w={'full'}
-        src={cover}
-        objectFit={'cover'}
-      />
-      <Flex justify={'center'} mt={-12}>
-        <Avatar
-          size={'xl'}
-          src={icon}
-          css={{
-            border: '2px solid white',
-          }}
+      <Flex direction="column" height="100%">
+        <Image
+          alt="hello"
+          h={'200px'}
+          w={'full'}
+          src={cover}
+          objectFit={'cover'}
         />
-      </Flex>
-      <Box p={6}>
-        <Stack spacing={0} align="center">
-          <Heading fontSize={'2xl'} fontWeight={500} fontFamily={'body'}>
-            {name}{' '}
-            <Icon
-              h={5}
-              color={minted ? 'green.500' : 'red.500'}
-              as={minted ? FaRegCheckCircle : FaRegTimesCircle}
-            />
-          </Heading>
-        </Stack>
-        <Divider mt={4} mb={4} orientation="horizontal" />
-        {!minted && mint && mint.private && (
-          <Stack spacing={0} direction="row">
-            <Stack spacing={0} m="auto">
-              <Link
-                href={`https://www.google.com/calendar/render?action=TEMPLATE&text=${name}+Private+Mint&dates=${moment(
-                  mint.private.start
-                ).format('YYYYMMDD[T]HH:mm')}/${moment(mint.private.end).format(
-                  'YYYYMMDD[T]HH:mm'
-                )}`}
-                isExternal
-              >
-                <Icon
-                  w={5}
-                  h={5}
-                  as={BsFillCalendarPlusFill}
-                  transition="all 0.2s ease-in-out"
-                  _hover={{
-                    color: 'blue.500',
-                    transform: 'scale(1.1)',
-                  }}
-                />
-              </Link>
-            </Stack>
-            <Stack spacing={0}>
-              <Text fontWeight={600}>Private Mint </Text>
-              <Text fontSize="sm">
-                {moment(mint.private.start).format('DD-MM-YYYY HH:mm')}
-              </Text>
-              <Text fontSize="sm">
-                {moment(mint.private.end).format('DD-MM-YYYY HH:mm')}
-              </Text>
-            </Stack>
-          </Stack>
-        )}
-        {!minted && mint && mint.private && (
-          <Divider mt={4} mb={4} orientation="horizontal" />
-        )}
-        {!minted && mint && mint.public && (
-          <Stack spacing={0} direction="row">
-            <Stack spacing={0} m="auto">
-              <Link
-                href={`https://www.google.com/calendar/render?action=TEMPLATE&text=${name}+Public+Mint&dates=${moment(
-                  mint.public.start
-                ).format()}`}
-                isExternal
-              >
-                <Icon
-                  w={5}
-                  h={5}
-                  as={BsFillCalendarPlusFill}
-                  transition="all 0.2s ease-in-out"
-                  _hover={{
-                    color: 'blue.500',
-                    transform: 'scale(1.1)',
-                  }}
-                />
-              </Link>
-            </Stack>
-            <Stack spacing={0}>
-              <Text fontWeight={600}>Public Mint</Text>
-              <Text fontSize="sm">
-                {moment(mint.public.start).format('YYYY-MM-DD HH:mm')}
-              </Text>
-            </Stack>
-          </Stack>
-        )}
-        {!minted && mint && mint.public && (
-          <Divider mt={4} mb={4} orientation="horizontal" />
-        )}
-        <Flex gap={4} justifyContent="center">
-          {website && (
-            <Link href={website} isExternal>
-              <Icon
-                w={5}
-                h={5}
-                as={FaLink}
-                transition="all 0.2s ease-in-out"
-                _hover={{
-                  color: 'blue.500',
-                  transform: 'scale(1.1)',
-                }}
-              />
-            </Link>
-          )}
-          {discord && (
-            <Link href={discord} isExternal>
-              <Icon
-                w={6}
-                h={6}
-                as={FaDiscord}
-                transition="all 0.2s"
-                _hover={{
-                  color: 'blue.500',
-                  transform: 'scale(1.1)',
-                }}
-              />
-            </Link>
-          )}
-          {twitter && (
-            <Link href={twitter} isExternal>
-              <Icon
-                w={6}
-                h={6}
-                as={FaTwitter}
-                transition="all 0.2s"
-                _hover={{
-                  color: 'blue.500',
-                  transform: 'scale(1.1)',
-                }}
-              />
-            </Link>
-          )}
-          {opensea && (
-            <Link href={opensea} isExternal>
-              <Icon
-                w={6}
-                h={6}
-                as={GiWhaleTail}
-                transition="all 0.2s"
-                _hover={{
-                  color: 'blue.500',
-                  transform: 'scale(1.1)',
-                }}
-              />
-            </Link>
-          )}
+        <Flex justify={'center'} mt={-12}>
+          <Avatar
+            size={'xl'}
+            src={icon}
+            css={{
+              border: '2px solid white',
+            }}
+          />
         </Flex>
-      </Box>
+        <Flex p={3} direction="column" height="100%">
+          <Stack spacing={0} align="center">
+            <Heading fontSize={'2xl'} fontWeight={500} fontFamily={'body'}>
+              {name}{' '}
+            </Heading>
+          </Stack>
+          {<Divider mt={4} mb={4} orientation="horizontal" />}
+          <Flex justifyContent="space-around" gap={3} mb={4}>
+            {!minted && mint && mint.private && (
+              <Flex flex="1">
+                {/* <Flex>
+                  <Link
+                    href={`https://www.google.com/calendar/render?action=TEMPLATE&text=${name}+Private+Mint&dates=${moment(
+                      mint.private.start
+                    ).format('YYYYMMDD[T]HH:mm')}/${moment(
+                      mint.private.end
+                    ).format('YYYYMMDD[T]HH:mm')}`}
+                    isExternal
+                  >
+                    <Icon
+                      w={5}
+                      h={5}
+                      as={BsFillCalendarPlusFill}
+                      transition="all 0.2s ease-in-out"
+                      _hover={{
+                        color: 'blue.500',
+                        transform: 'scale(1.1)',
+                      }}
+                    />
+                  </Link>
+                </Flex> */}
+                <Flex direction="column" alignItems="center" width="100%">
+                  <Text
+                    fontWeight={600}
+                    mb={2}
+                    fontSize="xs"
+                    textTransform="uppercase"
+                  >
+                    Private Mint{' '}
+                  </Text>
+                  <Flex
+                    direction="row"
+                    alignItems="center"
+                    width="100%"
+                    justifyContent="space-around"
+                  >
+                    <Flex direction="column" alignItems="center" flex="1">
+                      <Text
+                        textTransform="uppercase"
+                        fontWeight={700}
+                        fontSize="md"
+                        lineHeight="1em"
+                      >
+                        {moment(mint.private.start).format('DD MMM')}
+                      </Text>
+                      <Text fontSize="xs">
+                        {moment(mint.private.start).format('HH:mm')}
+                      </Text>
+                    </Flex>
+                    <Text>→</Text>
+                    <Flex direction="column" alignItems="center" flex="1">
+                      <Text
+                        textTransform="uppercase"
+                        fontWeight={700}
+                        fontSize="md"
+                        lineHeight="1em"
+                      >
+                        {moment(mint.private.end).format('DD MMM')}
+                      </Text>
+                      <Text fontSize="xs">
+                        {moment(mint.private.end).format('HH:mm')}
+                      </Text>
+                    </Flex>
+                  </Flex>
+                </Flex>
+              </Flex>
+            )}
+            {/* {!minted && mint && mint.private && (
+              <Divider mt={4} mb={4} orientation="horizontal" />
+            )} */}
+            {!minted && mint && mint.public && (
+              <Flex flex="1">
+                {/* <Flex>
+                  <Link
+                    href={`https://www.google.com/calendar/render?action=TEMPLATE&text=${name}+Private+Mint&dates=${moment(
+                      mint.private.start
+                    ).format('YYYYMMDD[T]HH:mm')}/${moment(
+                      mint.private.end
+                    ).format('YYYYMMDD[T]HH:mm')}`}
+                    isExternal
+                  >
+                    <Icon
+                      w={5}
+                      h={5}
+                      as={BsFillCalendarPlusFill}
+                      transition="all 0.2s ease-in-out"
+                      _hover={{
+                        color: 'blue.500',
+                        transform: 'scale(1.1)',
+                      }}
+                    />
+                  </Link>
+                </Flex> */}
+
+                <Flex direction="column" alignItems="center" width="100%">
+                  <Text
+                    fontWeight={600}
+                    mb={2}
+                    fontSize="xs"
+                    textTransform="uppercase"
+                  >
+                    Public Mint{' '}
+                  </Text>
+                  <Flex
+                    direction="row"
+                    alignItems="center"
+                    width="100%"
+                    justifyContent="space-between"
+                  >
+                    <Flex direction="column" alignItems="center" flex="1">
+                      <Text
+                        textTransform="uppercase"
+                        fontWeight={700}
+                        fontSize="md"
+                        lineHeight="1em"
+                      >
+                        {moment(mint.public.start).format('DD MMM')}
+                      </Text>
+                      <Text fontSize="xs">
+                        {moment(mint.public.start).format('HH:mm')}
+                      </Text>
+                    </Flex>
+                    <Text>→</Text>
+                    <Flex direction="column" alignItems="center" flex="1">
+                      <Text
+                        textTransform="uppercase"
+                        fontWeight={700}
+                        fontSize="md"
+                        lineHeight="1em"
+                      >
+                        {moment(mint.public.end).format('DD MMM')}
+                      </Text>
+                      <Text fontSize="xs">
+                        {moment(mint.public.end).format('HH:mm')}
+                      </Text>
+                    </Flex>
+                  </Flex>
+                </Flex>
+              </Flex>
+            )}
+          </Flex>
+          {<Divider mt="auto" mb={4} orientation="horizontal" />}
+
+          <Flex gap={4} justifyContent="center">
+            {website && (
+              <Link href={website} isExternal>
+                <Icon
+                  w={5}
+                  h={5}
+                  as={FaLink}
+                  transition="all 0.2s ease-in-out"
+                  _hover={{
+                    color: 'blue.500',
+                    transform: 'scale(1.1)',
+                  }}
+                />
+              </Link>
+            )}
+            {discord && (
+              <Link href={discord} isExternal>
+                <Icon
+                  w={6}
+                  h={6}
+                  as={FaDiscord}
+                  transition="all 0.2s"
+                  _hover={{
+                    color: 'blue.500',
+                    transform: 'scale(1.1)',
+                  }}
+                />
+              </Link>
+            )}
+            {twitter && (
+              <Link href={twitter} isExternal>
+                <Icon
+                  w={6}
+                  h={6}
+                  as={FaTwitter}
+                  transition="all 0.2s"
+                  _hover={{
+                    color: 'blue.500',
+                    transform: 'scale(1.1)',
+                  }}
+                />
+              </Link>
+            )}
+            {opensea && (
+              <Link href={opensea} isExternal>
+                <Icon
+                  w={6}
+                  h={6}
+                  as={GiWhaleTail}
+                  transition="all 0.2s"
+                  _hover={{
+                    color: 'blue.500',
+                    transform: 'scale(1.1)',
+                  }}
+                />
+              </Link>
+            )}
+          </Flex>
+        </Flex>
+      </Flex>
     </Box>
   );
 };

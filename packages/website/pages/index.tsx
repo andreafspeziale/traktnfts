@@ -20,7 +20,7 @@ const StyledPage = styled.div`
 `;
 
 const query = (search: string, minted: boolean, notMinted: boolean): string => `
-  *[ _type == 'project' && name match "*${search}*" ${
+  *[ _type == 'project' && displayed && name match "*${search}*" ${
   minted ? '&& minted' : ''
 } ${
   notMinted ? '&& !minted' : ''

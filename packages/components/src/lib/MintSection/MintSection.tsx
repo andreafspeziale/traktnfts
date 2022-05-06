@@ -7,11 +7,13 @@ type Mint = {
 };
 
 export type MintSectionProps = {
+  name: string;
   _public?: Mint;
   _private?: Mint;
 };
 
 export const MintSection: React.VFC<MintSectionProps> = ({
+  name,
   _private,
   _public,
 }) => {
@@ -28,6 +30,7 @@ export const MintSection: React.VFC<MintSectionProps> = ({
       >
         {_private && (
           <Mint
+            name={name}
             title="Private Mint"
             start={_private.start}
             end={_private.end}
@@ -38,7 +41,12 @@ export const MintSection: React.VFC<MintSectionProps> = ({
         )}
 
         {_public && (
-          <Mint title="Public Mint" start={_public.start} end={_public.end} />
+          <Mint
+            name={name}
+            title="Public Mint"
+            start={_public.start}
+            end={_public.end}
+          />
         )}
       </Flex>
       {(_private || _public) && (

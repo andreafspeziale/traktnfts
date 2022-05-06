@@ -1,14 +1,18 @@
 import { Flex, Text, Icon } from '@chakra-ui/react';
 import { IoIosInfinite } from 'react-icons/io';
 import { Date } from '../Date';
+import { IconLink } from '../IconLink';
+import moment from 'moment';
+import { BsCalendarPlus } from 'react-icons/bs';
 
 export type MintProps = {
+  name: string;
   title: string;
   start: string;
   end: string;
 };
 
-export const Mint: React.VFC<MintProps> = ({ title, start, end }) => {
+export const Mint: React.VFC<MintProps> = ({ name, title, start, end }) => {
   return (
     <Flex direction="column" alignItems="center" width="100%" flex="1">
       <Text fontWeight={600} mb={2} fontSize="xs" textTransform="uppercase">
@@ -37,28 +41,14 @@ export const Mint: React.VFC<MintProps> = ({ title, start, end }) => {
           </Flex>
         )}
       </Flex>
+      <IconLink
+        href={`https://www.google.com/calendar/render?action=TEMPLATE&text=${name}+${title}&dates=${moment(
+          start
+        ).format('YYYYMMDD[T]HH:mm')}/${moment(end).format(
+          'YYYYMMDD[T]HH:mm'
+        )}`}
+        icon={BsCalendarPlus}
+      />
     </Flex>
   );
 };
-
-/* <Flex>
-                  <Link
-                    href={`https://www.google.com/calendar/render?action=TEMPLATE&text=${name}+Private+Mint&dates=${moment(
-                      mint.private.start
-                    ).format('YYYYMMDD[T]HH:mm')}/${moment(
-                      mint.private.end
-                    ).format('YYYYMMDD[T]HH:mm')}`}
-                    isExternal
-                  >
-                    <Icon
-                      w={5}
-                      h={5}
-                      as={BsFillCalendarPlusFill}
-                      transition="all 0.2s ease-in-out"
-                      _hover={{
-                        color: 'blue.500',
-                        transform: 'scale(1.1)',
-                      }}
-                    />
-                  </Link>
-                </Flex> */

@@ -88,7 +88,11 @@ export const Card: React.VFC<CardProps> = ({
           >
             {name}
           </Heading>
-          <MintSection _public={mint?.public} _private={mint?.private} />
+          <MintSection
+            name={name}
+            _public={mint?.public}
+            _private={mint?.private}
+          />
           <Flex gap={4} justifyContent="center" mt="auto">
             {website && <IconLink href={website} icon={FaLink} />}
             {twitter && <IconLink href={discord} icon={FaDiscord} />}

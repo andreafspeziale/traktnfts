@@ -6,12 +6,15 @@ type Mint = {
   end: string;
 };
 
-export type MintProps = {
+export type MintSectionProps = {
   _public?: Mint;
   _private?: Mint;
 };
 
-export const MintSection: React.VFC<MintProps> = ({ _private, _public }) => {
+export const MintSection: React.VFC<MintSectionProps> = ({
+  _private,
+  _public,
+}) => {
   return (
     <>
       {(_private || _public) && (

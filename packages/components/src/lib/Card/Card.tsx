@@ -4,9 +4,6 @@ import {
   Flex,
   Avatar,
   Heading,
-  Stack,
-  Icon,
-  Link,
   useColorModeValue as colorModeValue,
 } from '@chakra-ui/react';
 import { FaDiscord, FaLink, FaTwitter } from 'react-icons/fa';

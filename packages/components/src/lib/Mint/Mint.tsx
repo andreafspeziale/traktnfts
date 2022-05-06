@@ -1,4 +1,5 @@
-import { Flex, Text } from '@chakra-ui/react';
+import { Flex, Text, Icon } from '@chakra-ui/react';
+import { IoIosInfinite } from 'react-icons/io';
 import { Date } from '../Date';
 
 export type MintProps = {
@@ -21,7 +22,20 @@ export const Mint: React.VFC<MintProps> = ({ title, start, end }) => {
       >
         <Date date={start} />
         <Text>→</Text>
-        <Date date={end} />
+        {end ? (
+          <Date date={end} />
+        ) : (
+          <Flex direction="column" alignItems="center" flex="1">
+            <Text
+              textTransform="uppercase"
+              fontWeight={700}
+              fontSize="md"
+              lineHeight="1em"
+            >
+              <Icon w={8} h={8} as={IoIosInfinite} />
+            </Text>
+          </Flex>
+        )}
       </Flex>
     </Flex>
   );

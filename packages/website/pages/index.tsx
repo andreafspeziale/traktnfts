@@ -10,7 +10,7 @@ const StyledPage = styled.div`
 `;
 
 const query = `
-  *[ _type == 'project' ]
+  *[ _type == 'project'] | order(mint.public.start, mint.private.start)
 `;
 
 export function Index() {

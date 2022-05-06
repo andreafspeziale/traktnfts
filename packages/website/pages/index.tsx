@@ -2,9 +2,17 @@ import React from 'react';
 import styled from '@emotion/styled';
 import { useQuery } from 'react-query';
 import { imageUrlBuilder, sanity } from '../utils/sanity';
-import { Center, Checkbox, Flex, Input } from '@chakra-ui/react';
+import {
+  Center,
+  Checkbox,
+  Flex,
+  Input,
+  InputGroup,
+  InputLeftElement,
+} from '@chakra-ui/react';
 import { Card } from '@traktnfts/components';
 import { useDebounce } from 'use-debounce';
+import { SearchIcon } from '@chakra-ui/icons';
 
 const StyledPage = styled.div`
   .page {
@@ -61,13 +69,19 @@ export function Index() {
 
       <div className="wrapper">
         <div className="container">
-          <Flex alignItems="center" gap={4}>
-            <Input
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search...  "
-              size="lg"
-            />
+          <Flex alignItems="center" gap={4} direction="column">
+            <InputGroup>
+              <InputLeftElement
+                pointerEvents="none"
+                // eslint-disable-next-line react/no-children-prop
+                children={<SearchIcon color="gray.300" />}
+              />
+              <Input
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Search...  "
+              />
+            </InputGroup>
             <Flex flexShrink={0} gap={4}>
               <Checkbox
                 isChecked={minted}

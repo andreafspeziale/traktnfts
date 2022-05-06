@@ -1,16 +1,22 @@
+import React from 'react';
 import styled from '@emotion/styled';
 import { useQuery } from 'react-query';
 import { imageUrlBuilder, sanity } from '../utils/sanity';
-import { Center, Flex } from '@chakra-ui/react';
+import { Center, Checkbox, Flex, Input } from '@chakra-ui/react';
 import { Card } from '@traktnfts/components';
+import { useDebounce } from 'use-debounce';
 
 const StyledPage = styled.div`
   .page {
   }
 `;
 
-const query = `
-  *[ _type == 'project'] | order(mint.public.start, mint.private.start)
+const query = (search: string, minted: boolean, notMinted: boolean): string => `
+  *[ _type == 'project' && name match "*${search}*" ${
+  minted ? '&& minted' : ''
+} ${
+  notMinted ? '&& !minted' : ''
+}] | order(mint.public.start, mint.private.start)
 `;
 
 export function Index() {
@@ -20,7 +26,22 @@ export function Index() {
    * Note: The corresponding styles are in the ./index.@emotion/styled file.
    */
 
-  const { data: projects } = useQuery('getProjects', () => sanity.fetch(query));
+  const [search, setSearch] = React.useState('');
+  const [minted, setMinted] = React.useState(false);
+  const [notMinted, setNotMinted] = React.useState(false);
+
+  const deferredSearch = React.useDeferredValue(search);
+
+  const [debouncedSearch] = useDebounce(deferredSearch, 1000);
+
+  const { data: projects } = useQuery(
+    ['getProjects', debouncedSearch, minted, notMinted],
+    () => sanity.fetch(query(debouncedSearch, minted, notMinted)),
+    {
+      keepPreviousData: true,
+    }
+  );
+
   return (
     <StyledPage>
       <div className="wrapper">
@@ -37,8 +58,37 @@ export function Index() {
           </div>
         </div>
       </div>
+
       <div className="wrapper">
         <div className="container">
+          <Flex alignItems="center" gap={4}>
+            <Input
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search...  "
+              size="lg"
+            />
+            <Flex flexShrink={0} gap={4}>
+              <Checkbox
+                isChecked={minted}
+                onChange={(e) => {
+                  setMinted(e.target.checked);
+                  setNotMinted(false);
+                }}
+              >
+                Minted
+              </Checkbox>
+              <Checkbox
+                isChecked={notMinted}
+                onChange={(e) => {
+                  setNotMinted(e.target.checked);
+                  setMinted(false);
+                }}
+              >
+                Not minted
+              </Checkbox>
+            </Flex>
+          </Flex>
           <Flex gap={6} justifyContent="center" flexWrap="wrap">
             {projects?.map((project) => (
               <Center key={project._id} py={6} alignItems="stretch">

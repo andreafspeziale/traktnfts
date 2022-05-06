@@ -3,6 +3,7 @@ import Head from 'next/head';
 import './styles.css';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ChakraProvider } from '@chakra-ui/react';
+import { Suspense } from 'react';
 
 const queryClient = new QueryClient({
   defaultOptions: {

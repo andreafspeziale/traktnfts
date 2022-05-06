@@ -23,7 +23,7 @@ export const MintSection: React.VFC<MintSectionProps> = ({
       <Flex
         justifyContent="space-around"
         gap={3}
-        minHeight="30px"
+        minHeight="60px"
         alignItems="center"
       >
         {_private && (

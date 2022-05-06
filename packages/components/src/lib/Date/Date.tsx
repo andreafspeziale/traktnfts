@@ -16,7 +16,11 @@ export const Date: React.VFC<DateProps> = ({ date }) => {
       >
         {momentDate.format('DD MMM')}
       </Text>
-      <Text fontSize="xs">{momentDate.format('HH:mm')}</Text>
+      <Text fontSize="xs">
+        {momentDate.format('HH:mm') === '00:00'
+          ? 'TBD'
+          : momentDate.format('HH:mm')}
+      </Text>
     </Flex>
   );
 };

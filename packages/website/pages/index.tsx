@@ -16,7 +16,7 @@ const query = (search: string, minted: boolean, notMinted: boolean): string => `
   minted ? '&& minted' : ''
 } ${
   notMinted ? '&& !minted' : ''
-}] | order(mint.public.start, mint.private.start)
+}] |  order(mint.public.start, mint.private.start, minted)
 `;
 
 export function Index() {

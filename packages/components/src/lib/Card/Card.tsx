@@ -5,6 +5,7 @@ import {
   Avatar,
   Heading,
   useColorModeValue as colorModeValue,
+  Badge,
 } from '@chakra-ui/react';
 import { FaDiscord, FaLink, FaTwitter } from 'react-icons/fa';
 import { GiWhaleTail } from 'react-icons/gi';
@@ -59,6 +60,9 @@ export const Card: React.VFC<CardProps> = ({
       {...props}
     >
       <Flex direction="column" height="100%">
+        <Badge colorScheme={minted ? 'green' : 'red'} p={2} textAlign="center">
+          Minted
+        </Badge>
         <Image
           alt="hello"
           h={'200px'}

@@ -113,6 +113,12 @@ export default {
               name: 'start',
               type: 'datetime',
             },
+            {
+              title: 'End',
+              description: 'Public mint end date',
+              name: 'end',
+              type: 'datetime',
+            },
           ],
         },
       ],

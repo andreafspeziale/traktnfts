@@ -126,10 +126,6 @@ export function Index() {
               </Center>
             ))}
           </Flex>
-        </div>
-      </div>
-      <div className="wrapper">
-        <div className="container">
           <p id="love">
             Carefully crafted with
             <svg

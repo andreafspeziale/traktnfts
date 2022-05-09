@@ -95,7 +95,7 @@ export const Card: React.VFC<CardProps> = ({
           />
           <Flex gap={4} justifyContent="center" mt="auto">
             {website && <IconLink href={website} icon={FaLink} />}
-            {twitter && <IconLink href={discord} icon={FaDiscord} />}
+            {discord && <IconLink href={discord} icon={FaDiscord} />}
             {twitter && <IconLink href={twitter} icon={FaTwitter} />}
             {opensea && <IconLink href={opensea} icon={GiWhaleTail} />}
           </Flex>

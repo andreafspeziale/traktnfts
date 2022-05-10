@@ -20,7 +20,7 @@ const StyledPage = styled.div`
 `;
 
 const query = (search: string, minted: boolean, notMinted: boolean): string => `
-  *[ _type == 'project' && displayed && name match "*${search}*" ${
+  *[ _type == 'project' && name match "*${search}*" ${
   minted ? '&& minted' : ''
 } ${
   notMinted ? '&& !minted' : ''
@@ -106,23 +106,21 @@ export function Index() {
           <Flex gap={6} justifyContent="center" flexWrap="wrap">
             {projects?.map((project) => (
               <Center key={project._id} py={6} alignItems="stretch">
-                {project.displayed && (
-                  <Card
-                    name={project.name}
-                    minted={project.minted}
-                    website={project.links.website}
-                    discord={project.links.discord}
-                    twitter={project.links.twitter}
-                    opensea={project.links.opensea}
-                    cover={imageUrlBuilder
-                      .width(634)
-                      .height(400)
-                      .image(project.cover)
-                      .url()}
-                    icon={imageUrlBuilder.width(150).image(project.icon).url()}
-                    mint={project.mint}
-                  />
-                )}
+                <Card
+                  name={project.name}
+                  minted={project.minted}
+                  website={project.links.website}
+                  discord={project.links.discord}
+                  twitter={project.links.twitter}
+                  opensea={project.links.opensea}
+                  cover={imageUrlBuilder
+                    .width(634)
+                    .height(400)
+                    .image(project.cover)
+                    .url()}
+                  icon={imageUrlBuilder.width(150).image(project.icon).url()}
+                  mint={project.mint}
+                />
               </Center>
             ))}
           </Flex>

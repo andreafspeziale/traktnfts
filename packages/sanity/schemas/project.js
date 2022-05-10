@@ -69,13 +69,6 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
-      title: 'Displayed',
-      description: 'Project is shown or not',
-      name: 'displayed',
-      type: 'boolean',
-      validation: (Rule) => Rule.required(),
-    },
-    {
       title: 'Mint',
       description: 'Mint details of the project',
       name: 'mint',
